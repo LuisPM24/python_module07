@@ -1,4 +1,13 @@
-from ex0 import FlameFactory, AquaFactory
+from ex0 import CreatureFactory, FlameFactory, AquaFactory
+
+
+def creature_tester(factory: CreatureFactory) -> None:
+    base = factory.create_base()
+    evolved = factory.create_evolved()
+    print(base.describe())
+    print(base.attack())
+    print(evolved.describe())
+    print(evolved.attack(), end="\n\n")
 
 
 def battle(flame_factory: FlameFactory, aqua_factory: AquaFactory
@@ -14,21 +23,13 @@ def battle(flame_factory: FlameFactory, aqua_factory: AquaFactory
 
 def main() -> None:
     print("Testing factory")
-    flameling = FlameFactory().create_base()
-    pyrodon = FlameFactory().create_evolved()
-    print(flameling.describe())
-    print(flameling.attack())
-    print(pyrodon.describe())
-    print(pyrodon.attack(), end="\n\n")
+    flame_factory = FlameFactory()
+    aqua_factory = AquaFactory()
+    creature_tester(flame_factory)
     print("Testing factory")
-    aquabub = AquaFactory().create_base()
-    torragon = AquaFactory().create_evolved()
-    print(aquabub.describe())
-    print(aquabub.attack())
-    print(torragon.describe())
-    print(torragon.attack(), end="\n\n")
+    creature_tester(aqua_factory)
     print("Testing battle")
-    battle(FlameFactory(), AquaFactory())
+    battle(flame_factory, aqua_factory)
 
 
 if __name__ == "__main__":
